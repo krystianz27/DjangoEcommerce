@@ -21,6 +21,8 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Create your views here.
 
 
@@ -204,15 +206,22 @@ def manage_shipping(request):
 
 @login_required(login_url="my-login")
 def my_orders(request):
+    orders_list = Order.objects.filter(user=request.user).order_by("-order_date")
+
+    paginator = Paginator(orders_list, 10)
+
+    page = request.GET.get("page")
+
     try:
-        orders = Order.objects.filter(user=request.user)
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
 
-        context = {"orders": orders}
+    context = {"orders": orders}
 
-        return render(request, "account/my-orders.html", context)
-
-    except:
-        return render(request, "account/my-orders.html")
+    return render(request, "account/my-orders.html", context)
 
 
 @login_required(login_url="my-login")
