@@ -39,11 +39,7 @@
                 <hr>
                 <p>Your order with number <strong>{{ order_id }}</strong> has been successfully processed.</p>
                 
-                {% if order_id %}
-                    <a href="{% url 'order-detail' order_id %}" class="btn-info m-1">Check your order &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
-                {% else %}
-                    <a href="{% url 'order-detail' 1 %}" class="btn-info m-1">Check your order &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
-                {% endif %}
+                <a href="{% url 'order-detail' order_id %}" class="btn-info m-1">Check your order &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
 
                 <br>
                 <br>
