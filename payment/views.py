@@ -20,10 +20,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.urls import reverse
 
+from smtplib import SMTPAuthenticationError
+
 # Create your views here.
 
 
-@login_required(login_url="my-login")
+# @login_required(login_url="my-login")
 def checkout(request):
 
     if request.user.is_authenticated:
@@ -42,7 +44,7 @@ def checkout(request):
         return render(request, "payment/checkout.html")
 
 
-@login_required(login_url="my-login")
+# @login_required(login_url="my-login")
 def complete_order(request):
     if request.POST.get("action") == "post":
         name = request.POST.get("name")
@@ -85,10 +87,15 @@ def complete_order(request):
             )
             product_list.append(item["product"])
 
-        send_order_confirmation_email(order)
+        try:
+            send_order_confirmation_email(order)
+        except SMTPAuthenticationError as e:
+            error_message = str(e)
+            return JsonResponse(
+                {"success": True, "order_id": order_id, "error_message": error_message}
+            )
 
-        order_success = True
-        response = JsonResponse({"success": order_success, "order_id": order_id})
+        response = JsonResponse({"success": True, "order_id": order_id})
         return response
 
 
@@ -115,7 +122,7 @@ def send_order_confirmation_email(order):
     )
 
 
-@login_required(login_url="my-login")
+# @login_required(login_url="my-login")
 def payment_success(request):
     order_id = request.GET.get("order_id")
 
@@ -137,7 +144,7 @@ def payment_success(request):
     return render(request, "payment/payment-success.html", context)
 
 
-@login_required(login_url="my-login")
+# @login_required(login_url="my-login")
 def payment_fail(request):
 
     return render(request, "payment/payment-failed.html")

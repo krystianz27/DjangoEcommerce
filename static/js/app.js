@@ -302,6 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           })
           .then(function (data) {
+            console.log("Data received:", data);
             // Check if there is a 'success: true' in the response
             if (data && data.success && data.order_id) {
               // Redirect to the payment-success page with order_id in the URL
