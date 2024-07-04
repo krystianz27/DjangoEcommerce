@@ -1,0 +1,40 @@
+
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+    <div class="container bg-light shadow-md p-5 form-layout">
+
+        <h3 class="text-center" >My orders:</h3>
+        <hr>
+
+
+        <br>
+
+
+        {% for order in orders %}
+
+            <strong>Order ID #{{order.id}}</strong>
+            <br>
+
+            <strong>Total price:</strong> ${{order.paid_amount}}
+            <br>
+            <strong>Date:</strong> {{order.order_date}}
+            <br>
+            <a href="{% url 'order-detail' order.id %}" class="">Check details &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
+            <hr>
+
+
+        {% endfor %}
+        
+
+    </div>
+    <br>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,113 @@
+
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <main class="pt-5">
+
+        <div class="row g-3">
+
+            <div class="col-md-5 col-lg-5 order-md-first bg-light">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false">
+                    <div class="carousel-inner">
+
+                        {% if product.default_image %}
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{ product.default_image.url }}" alt="Responsive Photo">
+                        </div>
+                        {% endif %}
+                        
+                        {% for photo in product.photos.all %}
+                            <div class="carousel-item {% if forloop.first and not product.default_image %}active{% endif %}">
+                                <img class="d-block w-100" src="{{ photo.image.url }}" alt="Responsive Photo">
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
+
+                <h1 class="mb-0 h4">{{ product.title }}</h1> <!-- Product title -->
+
+                <strong>{{ product.brand }}</strong> <!-- Product brand -->
+
+                <hr>
+
+                <br>
+
+                <p>{{ product.description|linebreaksbr }}</p> <!-- Product description -->
+
+                <div class="border">
+
+                    <div class="col border-bottom">
+
+                        <div class="row p-3">
+
+                            <div class="col-6">Price</div>
+
+                            <div class="col-6 text-end"><span class="h4 fw-bold">$ {{ product.price }}</span></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="row p-3">
+
+                            <div class="col-3 text-center">
+                                <label for="quantity">Quantity</label>
+                                &nbsp;
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" id="cart-minus-btn">-</button>
+                                    </span>
+                                    <input type="text" id="add-to-cart-quantity" name="add-to-cart-quantity" class="form-control text-center" value="1">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" id="cart-plus-btn">+</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-9 align-content-around text-end">
+
+                                <button type="button" id="add-to-cart-button" data-url="{% url 'cart-add' %}" value="{{ product.id }}" class="btn btn-primary btn-sm">
+                                    Add to cart
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <br>
+
+</div>
+
+
+{% endblock %}
+

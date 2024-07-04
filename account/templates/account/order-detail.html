@@ -1,0 +1,48 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+</style>
+<div class="container ">
+    <div class="row ">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body bg-light">
+                    <h2 class="card-title mb-4">Order Details</h2>
+                    <hr>
+                    <div class="order-info mb-4">
+                        <h4>Order Information</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Order ID:</strong> {{ order.id }}</li>
+                            <li class="list-group-item"><strong>Full Name:</strong> {{ order.full_name }}</li>
+                            <li class="list-group-item"><strong>Email:</strong> {{ order.email }}</li>
+                            <li class="list-group-item"><strong>Shipping Address:</strong> {{ order.shipping_address }}</li>
+                            <li class="list-group-item"><strong>Total Price:</strong> ${{ order.paid_amount }}</li>
+                            <li class="list-group-item"><strong>Order Date:</strong> {{ order.order_date }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="order-items">
+                        <h4>Order Items</h4>
+                        <div class="list-group">
+                            {% for order_item in order_items %}
+                            <div class="list-group-item">
+                                <h6 class="mb-1">{{ order_item.product }}</h6>
+                                <p class="mb-1">Quantity: {{ order_item.quantity }}</p>
+                                <p class="mb-1">Price: ${{ order_item.price }}</p>
+                                <a href="{{ order_item.product.get_absolute_url }}" class="btn btn-primary">View Product</a>
+                            </div>
+                            {% empty %}
+                                <p class="text-muted">No items in this order.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
