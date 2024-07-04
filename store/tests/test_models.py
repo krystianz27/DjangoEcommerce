@@ -1,25 +1,6 @@
 from django.test import TestCase
-from store.models import Category, Product
 from django.utils.text import slugify
-from django.urls import reverse
-
-
-# from django.shortcuts import get_object_or_404
-
-# import sys
-# import os
-# import django
-# from django.test.utils import get_runner
-# from django.conf import settings
-
-# # Dodaj katalog główny projektu do sys.path
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# # Ustawienie zmiennej środowiskowej dla ustawień Django
-# os.environ["DJANGO_SETTINGS_MODULE"] = "ecommerce.settings"
-
-# # Inicjalizacja Django
-# django.setup()
+from store.models import Category, Product
 
 
 class CategoryModelTest(TestCase):
@@ -43,7 +24,7 @@ class ProductModelTest(TestCase):
             brand="Lenovo",
             description="A powerful laptop",
             price=999.99,
-            image="media/images/default.jpg",
+            default_image="media/images/default.jpg",
         )
 
     def test_product_creation(self):
@@ -52,7 +33,7 @@ class ProductModelTest(TestCase):
         self.assertEqual(self.product.brand, "Lenovo")
         self.assertEqual(self.product.description, "A powerful laptop")
         self.assertEqual(self.product.price, 999.99)
-        self.assertEqual(self.product.image, "media/images/default.jpg")
+        self.assertEqual(self.product.default_image, "media/images/default.jpg")
 
     def test_product_slug_generation(self):
         self.assertEqual(self.product.slug, slugify(self.product.title))
@@ -65,12 +46,6 @@ class ProductModelTest(TestCase):
             category=self.category,
             title="Mouse",
             price=29.99,
-            image="media/images/default.jpg",
+            default_image="media/images/default.jpg",  # Poprawiono pole na default_image
         )
         self.assertEqual(product_without_brand.brand, "unbranded")
-
-
-# if __name__ == "__main__":
-#     import unittest
-
-#     unittest.main()
