@@ -45,7 +45,7 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["username", "email"]
+        fields = ["username", "email", "password"]
 
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
@@ -74,6 +74,28 @@ class UpdateUserForm(forms.ModelForm):
                 )
 
         return cleaned_data
+
+    # Email validation
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+
+        if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError("Email already exists")
+
+        if len(email) >= 350:
+            raise forms.ValidationError("Email is too long")
+
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        new_password1 = self.cleaned_data.get("new_password1")
+
+        if new_password1:
+            user.set_password(new_password1)
+            if commit:
+                user.save()
+        return user
 
 
 # Login form
