@@ -205,3 +205,9 @@
 .btn-pay-info:hover {
   background-color: #0056b3;
 }
+
+.icon-check {
+  color: #28a745;
+  font-size: 4em;
+  margin-bottom: 20px;
+}
