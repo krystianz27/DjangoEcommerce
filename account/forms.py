@@ -9,6 +9,7 @@ from django.forms.widgets import PasswordInput, TextInput
 
 # Registration form
 class CreateUserForm(UserCreationForm):
+
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
@@ -31,38 +32,51 @@ class CreateUserForm(UserCreationForm):
         return email
 
 
-# Login form
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput())
-    password = forms.CharField(widget=PasswordInput())
-
-
 class UpdateUserForm(forms.ModelForm):
-    password = None
+    current_password = forms.CharField(
+        label="Current Password", widget=forms.PasswordInput(), required=False
+    )
+    new_password1 = forms.CharField(
+        label="New Password", widget=forms.PasswordInput(), required=False
+    )
+    new_password2 = forms.CharField(
+        label="Confirm New Password", widget=forms.PasswordInput(), required=False
+    )
 
     class Meta:
         model = User
         fields = ["username", "email"]
-        exclude = ["password1", "password2"]
 
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
-
+        self.fields["username"].required = True
         self.fields["email"].required = True
 
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
+    def clean(self):
+        cleaned_data = super().clean()
+        current_password = cleaned_data.get("current_password")
+        new_password1 = cleaned_data.get("new_password1")
+        new_password2 = cleaned_data.get("new_password2")
 
-        if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Email already exists")
+        # Check if any password fields are filled
+        if any([current_password, new_password1, new_password2]):
+            # Ensure current password is provided if any new password is set
+            if not current_password:
+                self.add_error(
+                    "current_password",
+                    "Current password is required to change password.",
+                )
 
-        if len(email) >= 350:
-            raise forms.ValidationError("Email is too long")
+            # Validate new passwords match
+            if new_password1 != new_password2:
+                self.add_error(
+                    "new_password2", "The two new password fields must match."
+                )
 
-        return email
+        return cleaned_data
 
-    # def clean_username(self):
-    #     username = self.cleaned_data.get("username")
-    #     if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
-    #         raise forms.ValidationError("Username already exists")
-    #     return username
+
+# Login form
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput())
+    password = forms.CharField(widget=PasswordInput())
