@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+from django.contrib.auth.hashers import check_password
+
 from django.contrib.auth.models import User
 
 from django import forms
@@ -66,6 +68,14 @@ class UpdateUserForm(forms.ModelForm):
                     "current_password",
                     "Current password is required to change password.",
                 )
+            else:
+                # Validate current password
+                user = self.instance  # Get the current user object
+                if not check_password(current_password, user.password):
+                    self.add_error(
+                        "current_password",
+                        "Current password is incorrect.",
+                    )
 
             # Validate new passwords match
             if new_password1 != new_password2:

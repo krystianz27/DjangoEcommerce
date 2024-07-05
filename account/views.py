@@ -6,7 +6,7 @@ from payment.models import ShippingAddress, Order, OrderItem
 
 from django.contrib.auth.models import User, auth
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
@@ -149,7 +149,8 @@ def profile_management(request):
         form = UpdateUserForm(request.POST, instance=request.user)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+            update_session_auth_hash(request, user)
 
             messages.success(request, "Account updated")
 
