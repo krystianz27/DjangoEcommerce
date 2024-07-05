@@ -147,34 +147,34 @@
 
 /* Card styles */
 .card {
-  width: 100%; /* Automatycznie dostosowuje szerokość do zawartości */
-  min-width: auto; /* Minimalna szerokość kart */
-  height: auto; /* Wysokość karty */
-  background-color: #fff; /* Tło karty */
-  border: 1px solid #ddd; /* Ramka karty */
-  border-radius: 8px; /* Zaokrąglenie krawędzi karty */
-  overflow: hidden; /* Ukrycie zawartości przekraczającej wysokość karty */
-  margin: 10px; /* Odstęp wokół każdej karty */
+  width: 100%;
+  min-width: auto;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
   margin-inline-start: auto;
   margin-inline-end: auto;
 }
 
 .card img {
-  object-fit: cover; /* Dopasowanie obrazu do rozmiaru karty */
-  height: 200px; /* Wysokość obrazu */
-  width: 100%; /* Szerokość obrazu */
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
 }
 
 .card-text {
-  height: 50px; /* Wysokość tekstu karty */
-  overflow: hidden; /* Ukrycie nadmiaru tekstu */
-  text-overflow: ellipsis; /* Wskazanie, że tekst może być przycinany */
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-price {
-  height: auto; /* Wysokość tekstu karty */
-  overflow: hidden; /* Ukrycie nadmiaru tekstu */
-  text-overflow: ellipsis; /* Wskazanie, że tekst może być przycinany */
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* End */
 
@@ -187,6 +187,21 @@
   width: 500px;
 }
 
+/* payment-succes.html and payment-fail.html */
 .payment-checkout-body {
   background-color: gray;
+}
+
+.btn-pay-info {
+  color: white;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.btn-pay-info:hover {
+  background-color: #0056b3;
 }

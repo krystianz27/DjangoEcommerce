@@ -5,51 +5,25 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <style>
-        body {
-            background-color: #f2f2f2;
-        }
 
-        .icon-check {
-            color: #28a745;
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
+    <br>
+    <div class="container bg-light shadow-md p-5 form-layout">
+        <div class="text-center">
+            <i class="icon-check fa fa-check-circle fa-3x" aria-hidden="true"></i>
+            <h4><strong>Payment Successful!</strong></h4>
+            <hr>
+            <p>Your order with number <strong>{{ order_id }}</strong> has been successfully processed.</p>
+            
+            <a href="{% url 'order-detail' order_id %}" class="btn-info m-1">Check your order &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
 
-        .btn-info {
-            color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
+            <br>
+            <br>
 
-        .btn-info:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    <body>
-        <br>
-        <div class="container bg-white shadow-md p-5 form-layout">
-            <div class="text-center">
-                <i class="icon-check fa fa-check-circle fa-3x" aria-hidden="true"></i>
-                <h4><strong>Payment Successful!</strong></h4>
-                <hr>
-                <p>Your order with number <strong>{{ order_id }}</strong> has been successfully processed.</p>
-                
-                <a href="{% url 'order-detail' order_id %}" class="btn-info m-1">Check your order &nbsp; <i class="fa fa-info-circle" aria-hidden="true"></i> </a>
+            <p>A confirmation email has been sent to <strong>{{ email }}</strong>.</p>
 
-                <br>
-                <br>
-
-                <p>A confirmation email has been sent to <strong>{{ email }}</strong>.</p>
-
-                <a href="{% url 'store' %}" class="btn-info m-1">Back to Shop &nbsp; <i class="fa fa-undo" aria-hidden="true"></i> </a>
-            </div>
+            <a href="{% url 'store' %}" class="btn-pay-info m-1">Back to Shop &nbsp; <i class="fa fa-undo" aria-hidden="true"></i> </a>
         </div>
-    </body>
+    </div>
 
     <br>
     <br>
