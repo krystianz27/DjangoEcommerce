@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import environ
 
+from pathlib import Path
+
 env = environ.Env()
 environ.Env.read_env()
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     "mathfilters",  # cart-summary
     "crispy_forms",
     "crispy_bootstrap5",
+    "storages",  # pip install django-storages
 ]
 
 
@@ -141,6 +143,8 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 MEDIA_URL = "/media/"
 
@@ -162,6 +166,10 @@ REST_FRAMEWORK = {
     ),
 }
 
+# Payment settings
+# Paypal
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
 
 # Email configuration settings
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # output in console
@@ -174,6 +182,24 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
-# Payment settings
-# Paypal
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
+# AWS CREDENTIALS
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+# S3 configuration
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+# Boto3
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+}
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_S3_FILE_OVERWRITE = False  # generate id if name of a file already exists
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False

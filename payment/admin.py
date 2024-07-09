@@ -14,6 +14,13 @@ class ShippingAddressAdmin(admin.ModelAdmin):
         "email",
         "city",
     ]
+    search_fields = [
+        "id",
+        "full_name",
+        "user",
+        "email",
+        "city",
+    ]
 
 
 @admin.register(Order)
@@ -41,6 +48,15 @@ class OrderAdmin(admin.ModelAdmin):
         "order_date",
         "user",
     ]
+    search_fields = [
+        "id",
+        "full_name",
+        "email",
+        "shipping_address",
+        "paid_amount",
+        "formatted_order_date",
+        "user",
+    ]
 
     def formatted_order_date(self, obj):
         return obj.order_date.strftime("%d-%m-%Y %H:%M")
@@ -51,6 +67,12 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
+        "product",
+        "quantity",
+        "price",
+    ]
+    search_fields = [
         "id",
         "product",
         "quantity",

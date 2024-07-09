@@ -34,9 +34,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     slug = AutoSlugField(populate_from="title", unique=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    default_image = models.ImageField(
-        default="/images/default.jpg", upload_to="images/"
-    )
+    default_image = models.ImageField(default="images/default.jpg", upload_to="images")
 
     def save(self, *args, **kwargs):
         if (

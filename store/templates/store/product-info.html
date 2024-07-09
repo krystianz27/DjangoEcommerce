@@ -16,10 +16,10 @@
                 <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-inner">
 
-                        {% if product.default_image %}
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ product.default_image.url }}" alt="Responsive Photo">
-                        </div>
+                        {% if product.default_image and "default.jpg" not in product.default_image.name %}
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{{ product.default_image.url }}" alt="Responsive Photo">
+                            </div>
                         {% endif %}
                         
                         {% for photo in product.photos.all %}
@@ -42,15 +42,15 @@
 
             <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
 
-                <h1 class="mb-0 h4">{{ product.title }}</h1> <!-- Product title -->
+                <h1 class="mb-0 h4">{{ product.title }}</h1> 
 
-                <strong>{{ product.brand }}</strong> <!-- Product brand -->
+                <strong>{{ product.brand }}</strong> 
 
                 <hr>
 
                 <br>
 
-                <p>{{ product.description|linebreaksbr }}</p> <!-- Product description -->
+                <p>{{ product.description|linebreaksbr }}</p> 
 
                 <div class="border">
 

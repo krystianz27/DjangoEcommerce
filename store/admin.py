@@ -12,6 +12,10 @@ class CategoryAdmin(admin.ModelAdmin):
         "id",
         "name",
     ]
+    search_fields = [
+        "id",
+        "name",
+    ]
 
 
 class ProductPhotoInline(admin.TabularInline):
@@ -27,6 +31,12 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductPhotoInline]
     list_filter = ("category",)
     list_display = [
+        "id",
+        "title",
+        "brand",
+        "price",
+    ]
+    search_fields = [
         "id",
         "title",
         "brand",
