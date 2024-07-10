@@ -275,8 +275,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var formData = {
           name: $("#name").val(),
           email: $("#email").val(),
+          phone_number: $("#phone-number").val(),
           address1: $("#address1").val(),
-          address2: $("#address2").val(),
+          number: $("#number").val(),
           city: $("#city").val(),
           state: $("#state").val(),
           zipcode: $("#zipcode").val(),

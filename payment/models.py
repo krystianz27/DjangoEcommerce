@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 from store.models import Product
 
+from phonenumber_field.modelfields import PhoneNumberField
+
 # Create your models here.
 
 
@@ -11,8 +13,9 @@ class ShippingAddress(models.Model):
 
     full_name = models.CharField(max_length=300)
     email = models.EmailField(max_length=255)
+    phone_number = PhoneNumberField(blank=True)
     address1 = models.CharField(max_length=300)
-    address2 = models.CharField(max_length=300)
+    number = models.CharField(max_length=300)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255, null=True, blank=True)
     zipcode = models.CharField(max_length=20, blank=True)

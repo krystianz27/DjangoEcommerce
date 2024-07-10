@@ -12,13 +12,15 @@ class ShippingAddressAdmin(admin.ModelAdmin):
         "full_name",
         "user",
         "email",
+        "phone_number",
         "city",
     ]
     search_fields = [
         "id",
         "full_name",
-        "user",
+        "user__username",
         "email",
+        "phone_number",
         "city",
     ]
 
@@ -40,22 +42,21 @@ class OrderAdmin(admin.ModelAdmin):
     ]
 
     fields = [
-        "id",
         "full_name",
         "email",
         "shipping_address",
         "paid_amount",
-        "order_date",
         "user",
     ]
+
     search_fields = [
         "id",
         "full_name",
         "email",
         "shipping_address",
         "paid_amount",
-        "formatted_order_date",
-        "user",
+        "order_date",
+        "user__username",
     ]
 
     def formatted_order_date(self, obj):
@@ -74,7 +75,7 @@ class OrderItemAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         "id",
-        "product",
+        "product__title",
         "quantity",
         "price",
     ]
