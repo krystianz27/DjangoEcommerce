@@ -27,10 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = ["http://ecommerce-dev.eu-central-1.elasticbeanstalk.com"]
 
 
 # Application definition
@@ -49,12 +52,11 @@ INSTALLED_APPS = [
     "autoslug",
     "payment",
     "rest_framework",
-    #####################
+    # 3rd party
     "mathfilters",  # cart-summary
     "crispy_forms",
     "crispy_bootstrap5",
     "storages",  # pip install django-storages
-    "phonenumber_field",
 ]
 
 
@@ -98,12 +100,12 @@ WSGI_APPLICATION = "ecommerce.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -204,3 +206,17 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_FILE_OVERWRITE = False  # generate id if name of a file already exists
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_AUTH = False
+
+
+# RDS Database configuration settings
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+    }
+}

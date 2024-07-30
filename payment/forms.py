@@ -2,9 +2,6 @@ from django import forms
 
 from .models import ShippingAddress
 
-from phonenumber_field.formfields import PhoneNumberField
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
-
 
 # class ShippingForm(forms.ModelForm):
 #     class Meta:

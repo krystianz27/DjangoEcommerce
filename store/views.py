@@ -17,18 +17,20 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def store(request):
-    all_products = Product.objects.all()
 
     # Sorting products based on query parameters
     sort_by = request.GET.get("sort_by")
+
     if sort_by == "price_asc":
-        all_products = all_products.order_by("price")
+        all_products = Product.objects.all().order_by("price")
     elif sort_by == "price_desc":
-        all_products = all_products.order_by("-price")
+        all_products = Product.objects.all().order_by("-price")
     elif sort_by == "name_asc":
-        all_products = all_products.order_by("title")
+        all_products = Product.objects.all().order_by("title")
     elif sort_by == "name_desc":
-        all_products = all_products.order_by("-title")
+        all_products = Product.objects.all().order_by("-title")
+    else:
+        all_products = Product.objects.all().order_by("id")
 
     # Pagination
     paginator = Paginator(all_products, 10)  # Show 10 products per page
