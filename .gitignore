@@ -9,6 +9,8 @@ venv/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+.ebignore
 
 
-/.ebextensions/env.config
+.ebextensions/env.config
+.ebextensions/*

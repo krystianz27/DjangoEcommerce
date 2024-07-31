@@ -16,7 +16,7 @@
                 <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-inner">
 
-                        {% if product.default_image and "default.jpg" not in product.default_image.name %}
+                        {% if product.default_image  %}
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src="{{ product.default_image.url }}" alt="Responsive Photo">
                             </div>
