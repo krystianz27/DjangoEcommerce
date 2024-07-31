@@ -117,14 +117,16 @@
 
 /* Pagination Style */
 .pagination {
+  max-width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 }
 
 .pagination .page-item {
-  display: inline-block;
-  margin-right: 5px;
+  display: inline-flex;
+  margin: 2px;
 }
 
 .pagination .page-link {
@@ -133,6 +135,7 @@
   background-color: #f5f5f5;
   color: #333;
   text-decoration: none;
+  display: block;
 }
 
 .pagination .page-link:hover {
@@ -182,14 +185,14 @@
   max-width: 130px;
 }
 
-.form-layout {
+/* payment/checkout.html */
+.payment-page {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background-color: #f8f9fa;
   border-radius: 20px;
-  width: 500px;
-}
-
-/* payment-succes.html and payment-fail.html */
-.payment-checkout-body {
-  background-color: gray;
+  box-sizing: border-box;
 }
 
 .btn-pay-info {
@@ -210,4 +213,29 @@
   color: #28a745;
   font-size: 4em;
   margin-bottom: 20px;
+}
+
+/* Styles for the registration form only */
+#registration-form {
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* account/ Login and Register site */
+.login-register-site {
+  max-width: 500px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.form-layout {
+  /* max-width: 500px; */
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  box-sizing: border-box;
 }

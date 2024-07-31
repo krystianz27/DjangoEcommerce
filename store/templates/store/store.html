@@ -1,138 +1,112 @@
-
 {% extends "./base.html" %}
 
 {% load static %}
 
-
 {% block content %}
 
-  
-    <section class="py-4 text-center container">
-
-        {% if not user.is_authenticated %}
-
-            <div class="row py-lg-5">
-            
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    
-
-                    <h4> Estore...Simplicity at it's finest. </h4>
-
-
-                    <br>
-                    
-
-                    <p class="lead text-muted">
-
+<section class="py-3 text-center container">
+    {% if not user.is_authenticated %}
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h4>Estore...Simplicity at its finest.</h4>
+                <br>
+                <p class="lead text-muted">
                     Browse our extensive collection.
-
-                    </p>
-
-
-                    <br>
-            
-                    <a href="{% url "register" %}" class="btn btn-primary my-2"> <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp; Create an account </a>
-                    
-                    
-                </div>
-            
-            </div>
-        
-        {% endif %}
-
-    </section>
-
-    
-
-    <!-- All products section -->
-    
-    <div class="album py-5 bg-light">
-    
-        <div class="container">
-
-            <form method="get" action="{% url 'store' %}" class="sort-form">
-                {% csrf_token %}
-                <label for="sort_by">Sort by:</label>
-                <select name="sort_by" id="sort_by">
-                    <option value="">-- Choose --</option>
-                    <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
-                    <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
-                    <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Name: A to Z</option>
-                    <option value="name_desc" {% if sort_by == 'name_desc' %}selected{% endif %}>Name: Z to A</option>
-                </select>
-                <button type="submit">Sort &nbsp; <i class="fa fa-sort" aria-hidden="true"></i></button>
-            </form>
-
-            <div class="pb-3 h5"> All products </div>
-
-
-            <hr>
-
-            <br>
-            
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-
-                {% for product in my_products %}
-
-                    <div class="col">
-
-                        <div class="card shadow-sm">
-
-                            <img class="img-fluid" alt="Responsive image" src="{{product.default_image.url}}">
-
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <a class="text-info text-decoration-none" href="{{product.get_absolute_url}}">{{product.title | capfirst}}</a>
-                                </p>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5>$ {{product.price}} </h5>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-
-                {% endfor %}
-            
-
+                </p>
+                <br>
+                <a href="{% url "register" %}" class="btn btn-primary my-2">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp; Create an account
+                </a>
             </div>
         </div>
+    {% endif %}
+</section>
+
+<!-- All products section -->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <form method="get" action="{% url 'store' %}" class="sort-form">
+            <label for="sort_by">Sort by:</label>
+            <select name="sort_by" id="sort_by" class="form-select d-inline-block w-auto">
+                <option value="">-- Choose --</option>
+                <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
+                <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
+                <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Name: A to Z</option>
+                <option value="name_desc" {% if sort_by == 'name_desc' %}selected{% endif %}>Name: Z to A</option>
+            </select>
+            <button type="submit" class="btn btn-secondary">Sort &nbsp; <i class="fa fa-sort" aria-hidden="true"></i></button>
+        </form>
+
+        <div class="pb-3 h5">All products</div>
+        <hr>
+        <br>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            {% for product in my_products %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="img-fluid" alt="Responsive image" src="{{product.default_image.url}}">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <a class="text-info text-decoration-none" href="{{product.get_absolute_url}}">{{product.title | capfirst}}</a>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>$ {{product.price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+</div>
 
-    <br>
-    <br>
+<br>
+<br>
 
-    <div class="pagination justify-content-center">
-        <ul class="pagination">
+<div class="pagination justify-content-center">
+    <ul class="pagination">
+        <!-- "First" and "Previous" buttons -->
         {% if my_products.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ my_products.previous_page_number }}">Previous</a></li>
+            <li class="page-item">
+                <a class="page-link" href="?page=1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ my_products.previous_page_number }}">Previous</a>
+            </li>
         {% endif %}
+
+        <!-- Page number buttons -->
         {% for num in my_products.paginator.page_range %}
-            {% if my_products.number == num %}
-            <li class="page-item active" aria-current="page"><span class="page-link">{{ num }} <span class="sr-only">(current)</span></span></li>
-            {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% if num > my_products.number|add:'-1' and num < my_products.number|add:'1' %}
+                {% if my_products.number == num %}
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                            {{ num }} of {{ my_products.paginator.num_pages }}
+                        </span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
             {% endif %}
         {% endfor %}
+
+        <!-- "Next" and "Last" buttons -->
         {% if my_products.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ my_products.next_page_number }}">Next</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ my_products.paginator.num_pages }}">Last</a></li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ my_products.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ my_products.paginator.num_pages }}">Last</a>
+            </li>
         {% endif %}
-        </ul>
-    </div>
-  
-
-    <br>
+    </ul>
+</div>
 
 
+
+
+<br>
 
 {% endblock %}
-
-
-
-
-
-

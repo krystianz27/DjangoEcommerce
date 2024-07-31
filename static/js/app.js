@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const paymentFailUrl = paypalData.dataset.paymentFailUrl;
   const csrfToken = getCookie("csrftoken");
   const totalPrice = paypalData.dataset.totalPrice;
+  const paymentAlertMessage = document.getElementById("payment-alert-message");
 
   const paypalButtonsComponent = paypal.Buttons({
     // Optional styling for buttons
@@ -247,6 +248,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (isOrderVerified === true) {
         actions.enable();
       } else {
+        paymentAlertMessage.textContent =
+          "Please complete all required fields before proceeding with payment.";
         actions.disable();
       }
     },
