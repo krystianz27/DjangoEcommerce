@@ -225,17 +225,15 @@
 }
 /* account/ Login and Register site */
 .login-register-site {
-  max-width: 500px;
+  max-width: 600px;
   padding: 20px;
-  background-color: #f8f9fa;
   border-radius: 20px;
   box-sizing: border-box;
 }
 
 .form-layout {
-  /* max-width: 500px; */
+  width: 100%;
   padding: 20px;
-  background-color: #f8f9fa;
   border-radius: 20px;
   box-sizing: border-box;
 }

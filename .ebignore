@@ -1,9 +1,10 @@
 requirements.dev.txt
+generate_secret_key.py
 
 .pytest_cache/
 tests/
 .pytest_cache/
-*.test.py
+*test.py
 test_*.py
 
 *.local

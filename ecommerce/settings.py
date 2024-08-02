@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -96,17 +96,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ecommerce.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -183,41 +172,52 @@ EMAIL_PORT = "587"
 EMAIL_USE_TLS = "True"
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
 
-# AWS CREDENTIALS
-AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
-AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
-# S3 configuration
-# AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
-# # Boto3
-# STORAGES = {
-#     "default": {
-#         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-#     },
-#     "staticfiles": {
-#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-#     },
-# }
+ENVIRONMENT = env("DJANGO_ENVIRONMENT", default="development")
 
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-# AWS_S3_FILE_OVERWRITE = False  # generate id if name of a file already exists
-# AWS_DEFAULT_ACL = None
-# AWS_QUERYSTRING_AUTH = False
+if ENVIRONMENT == "production":
+    DEBUG = False
 
+    # AWS CREDENTIALS
+    AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+    # S3 configuration
+    AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+    # Boto3
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        },
+    }
 
-# RDS Database configuration settings
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_FILE_OVERWRITE = False  # generate id if name of a file already exists
+    AWS_DEFAULT_ACL = None
+    AWS_QUERYSTRING_AUTH = False
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DB_NAME"),
-#         "USER": env("DB_USER"),
-#         "PASSWORD": env("DB_PASSWORD"),
-#         "HOST": env("DB_HOST"),
-#         "PORT": env("DB_PORT"),
-#     }
-# }
+    # RDS Database configuration settings
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
+        }
+    }
+
+else:
+    DEBUG = env.bool("DEBUG", default=False)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
