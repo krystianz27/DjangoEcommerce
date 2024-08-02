@@ -33,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ["http://ecommerce-dev.eu-central-1.elasticbeanstalk.com"]
+# CSRF_TRUSTED_ORIGINS = ["*"]
 
 
 # Application definition
