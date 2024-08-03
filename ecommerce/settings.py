@@ -116,6 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "account.authentication.CaseInsensitiveModelBackend",  # Custom Backend (username case insensitive)
+    "django.contrib.auth.backends.ModelBackend",  # Default Backend
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -221,3 +226,22 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
+
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "console": {
+#             "level": "DEBUG",
+#             "class": "logging.StreamHandler",
+#         },
+#     },
+#     "loggers": {
+#         "django": {
+#             "handlers": ["console"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#     },
+# }
