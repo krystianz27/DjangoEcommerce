@@ -21,6 +21,14 @@ class CreateUserForm(UserCreationForm):
 
         self.fields["email"].required = True
 
+    def clean_username(self):
+        username = self.cleaned_data.get("username").lower()
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Username already exists")
+
+        return username
+
     # Email validation
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -61,7 +69,7 @@ class UpdateUserForm(forms.ModelForm):
         new_password2 = cleaned_data.get("new_password2")
 
         # Check if any password fields are filled
-        if any([current_password, new_password1, new_password2]):
+        if any([new_password1, new_password2]):
             # Ensure current password is provided if any new password is set
             if not current_password:
                 self.add_error(
@@ -78,12 +86,20 @@ class UpdateUserForm(forms.ModelForm):
                     )
 
             # Validate new passwords match
-            if new_password1 != new_password2:
+            if new_password1 and new_password2 and new_password1 != new_password2:
                 self.add_error(
                     "new_password2", "The two new password fields must match."
                 )
 
         return cleaned_data
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username").lower()
+
+        if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError("Username already exists")
+
+        return username
 
     # Email validation
     def clean_email(self):
@@ -103,12 +119,23 @@ class UpdateUserForm(forms.ModelForm):
 
         if new_password1:
             user.set_password(new_password1)
-            if commit:
-                user.save()
+
+        if commit:
+            user.save()
+
         return user
 
 
 # Login form
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput())
+    username = forms.CharField(widget=forms.TextInput(attrs={"autofocus": True}))
     password = forms.CharField(widget=PasswordInput())
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+
+        if username:
+            cleaned_data["username"] = username.lower()
+
+        return cleaned_data
