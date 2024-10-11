@@ -35,7 +35,7 @@ def store(request):
 
     # Pagination
     paginator = Paginator(all_products, 10)  # Show 10 products per page
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page") or 1
 
     try:
         products = paginator.page(page_number)
@@ -73,6 +73,7 @@ def list_category(request, category_slug=None):
 
     # Sorting products based on query parameters
     sort_by = request.GET.get("sort_by")
+
     if sort_by == "price_asc":
         products = products.order_by("price")
     elif sort_by == "price_desc":
@@ -81,10 +82,13 @@ def list_category(request, category_slug=None):
         products = products.order_by("title")
     elif sort_by == "name_desc":
         products = products.order_by("-title")
+    else:
+        products = Product.objects.all().order_by("id")
 
     # Pagination
     paginator = Paginator(products, 10)  # Show 10 products per page
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page") or 1
+
     try:
         products = paginator.page(page_number)
     except PageNotAnInteger:

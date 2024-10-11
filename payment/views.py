@@ -61,7 +61,7 @@ def complete_order(request):
 
         cart = Cart(request)
         total_cost = cart.get_total()
-        product_list = []
+        # product_list = []
 
         if request.user.is_authenticated:
             order = Order.objects.create(
@@ -88,7 +88,7 @@ def complete_order(request):
                 quantity=item["qty"],
                 price=item["price"],
             )
-            product_list.append(item["product"])
+            # product_list.append(item["product"])
 
         try:
             send_order_confirmation_email(order)
