@@ -1,3 +1,5 @@
+# export EB_CONFIG_FILE=/aws/.elasticbeanstalk/config.yml
+
 branch-defaults:
   default:
     environment: Ecommerce2-env
