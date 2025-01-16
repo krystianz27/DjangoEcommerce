@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import environ
 
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
 
 env = environ.Env()
 environ.Env.read_env()
@@ -31,9 +34,17 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "*",
+    "DjangoEcommerceLB-851697894.eu-central-1.elb.amazonaws.com",
+]
 
-# CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://DjangoEcommerceLB-851697894.eu-central-1.elb.amazonaws.com",
+    "https://DjangoEcommerceLB-851697894.eu-central-1.elb.amazonaws.com",
+]
 
 
 # Application definition
@@ -52,11 +63,12 @@ INSTALLED_APPS = [
     "autoslug",
     "payment",
     "rest_framework",
+    "rest_framework_simplejwt",
     # 3rd party
     "mathfilters",  # cart-summary
     "crispy_forms",
     "crispy_bootstrap5",
-    "storages",  # pip install django-storages
+    "storages",
     "phonenumber_field",
 ]
 
@@ -96,6 +108,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ecommerce.wsgi.application"
+
+# Reverse Proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Password validation
@@ -144,9 +159,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/images/"
 
-MEDIA_ROOT = BASE_DIR / "static/media"
+MEDIA_ROOT = BASE_DIR / "static/images"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -158,11 +173,13 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
 }
+
 
 # Payment settings
 # Paypal
@@ -173,14 +190,18 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # output in console
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = "587"
-EMAIL_USE_TLS = "True"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
+# ssl_context = ssl.create_default_context()
+# ssl_context.check_hostname = False
+# ssl_context.verify_mode = ssl.CERT_NONE
 
-ENVIRONMENT = env("DJANGO_ENVIRONMENT", default="development")
+
+ENVIRONMENT = env("DJANGO_ENVIRONMENT", default="development")  # type: ignore
 
 if ENVIRONMENT == "production":
     DEBUG = False
@@ -218,29 +239,55 @@ if ENVIRONMENT == "production":
         }
     }
 
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         "NAME": "ecommerce_db",
+    #         "USER": "ecommerce_user",
+    #         "PASSWORD": "ecommerce_password",
+    #         "HOST": "postgres_db",
+    #         "PORT": "5432",
+    #     }
+    # }
+
+
 else:
-    DEBUG = env.bool("DEBUG", default=False)
+    # DEBUG: bool = env.bool("DEBUG", default=False)
+    BASE_URL = "http://localhost:8000"
+
+    DEBUG: bool = bool(env.bool("DEBUG", default=False))  # type: ignore
+
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.sqlite3",
+    #         "NAME": BASE_DIR / "db.sqlite3",
+    #     }
+    # }
+
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "ecommerce_db",
+            "USER": "ecommerce_user",
+            "PASSWORD": "ecommerce_password",
+            "HOST": "postgres_db",
+            "PORT": "5432",
         }
     }
-
 
 # LOGGING = {
 #     "version": 1,
 #     "disable_existing_loggers": False,
 #     "handlers": {
 #         "console": {
-#             "level": "DEBUG",
+#             "level": "INFO",
 #             "class": "logging.StreamHandler",
 #         },
 #     },
 #     "loggers": {
 #         "django": {
 #             "handlers": ["console"],
-#             "level": "DEBUG",
+#             "level": "INFO",
 #             "propagate": True,
 #         },
 #     },

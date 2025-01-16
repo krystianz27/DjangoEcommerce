@@ -3,6 +3,7 @@ from . import views
 
 from django.contrib.auth import views as auth_views
 
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path("register", views.register, name="register"),
@@ -67,4 +68,7 @@ urlpatterns = [
     path("manage-shipping", views.manage_shipping, name="manage-shipping"),
     path("my-orders", views.my_orders, name="my-orders"),
     path("order/<int:order_id>", views.order_detail_view, name="order-detail"),
+    # API AUTH
+    path("api/token", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh", TokenRefreshView.as_view(), name="token_refresh"),
 ]

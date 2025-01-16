@@ -1,27 +1,23 @@
-from django.shortcuts import render, redirect, get_object_or_404
-
-from .forms import CreateUserForm, LoginForm, UpdateUserForm
-from payment.forms import ShippingForm
-from payment.models import ShippingAddress, Order, OrderItem
-
-from django.contrib.auth.models import User, auth
-
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-
-from django.contrib.auth.decorators import login_required
-
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, auth
 
 # Email verification
 from django.contrib.sites.shortcuts import get_current_site
-from .token import user_tokenizer_generate
+from django.core.mail import EmailMessage  # noqa: F401
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404, redirect, render
 
 # Markup email verification
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from payment.forms import ShippingForm
+from payment.models import Order, OrderItem, ShippingAddress
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import CreateUserForm, LoginForm, UpdateUserForm
+from .token import user_tokenizer_generate
 
 # Create your views here.
 
@@ -49,11 +45,11 @@ def register(request):
                     "token": user_tokenizer_generate.make_token(user),
                 },
             )
-            # to_email = form.cleaned_data.get("email")
-            # email = EmailMessage(email_subject, message, to=[to_email])
-            # email.send()
+            to_email = form.cleaned_data.get("email")
+            email = EmailMessage(email_subject, message, to=[to_email])
+            email.send()
 
-            user.email_user(subject=email_subject, message=message)
+            # user.email_user(subject=email_subject, message=message)
 
             return redirect("email-verification-sent")
 

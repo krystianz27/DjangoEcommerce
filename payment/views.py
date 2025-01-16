@@ -92,6 +92,7 @@ def complete_order(request):
 
         try:
             send_order_confirmation_email(order)
+            pass
         except SMTPAuthenticationError as e:
             error_message = str(e)
             return JsonResponse(

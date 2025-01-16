@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "name": "setup-django-nginx",
+  "version": "1.0.0",
+  "description": "Install Django, Nginx Docker Images from ECR",
+  "phases": {
+    "build": {
+      "steps": [
+        {
+          "name": "InstallDocker",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "amazon-linux-extras enable docker",
+              "yum install -y docker",
+              "systemctl enable docker",
+              "systemctl start docker"
+            ]
+          }
+        },
+        {
+          "name": "LoginToECR",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 533267011476.dkr.ecr.eu-central-1.amazonaws.com"
+            ]
+          }
+        },
+        {
+          "name": "PullDjangoImage",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "docker pull 533267011476.dkr.ecr.eu-central-1.amazonaws.com/django-repo:latest"
+            ]
+          }
+        },
+        {
+          "name": "PullNginxImage",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "docker pull 533267011476.dkr.ecr.eu-central-1.amazonaws.com/nginx-repo:latest"
+            ]
+          }
+        },
+        {
+          "name": "RunDjangoContainer",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "docker run -d --name django -p 8000:8000 533267011476.dkr.ecr.eu-central-1.amazonaws.com/django-repo:latest"
+            ]
+          }
+        },
+        {
+          "name": "RunNginxContainer",
+          "action": "EXECUTE_BASH",
+          "inputs": {
+            "commands": [
+              "docker run -d --name nginx -p 80:80 533267011476.dkr.ecr.eu-central-1.amazonaws.com/nginx-repo:latest"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

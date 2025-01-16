@@ -1,0 +1,18 @@
+services:
+  djangoapp:
+    build: .
+    container_name: django
+    ports:
+      - "8000:8000"
+    image: app:django
+    command: gunicorn ecommerce.wsgi:application --bind 0.0.0.0:8000 --timeout=10 --threads=10
+    restart: always
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    image: nginx:latest
+    restart: always
+    links:
+      - djangoapp

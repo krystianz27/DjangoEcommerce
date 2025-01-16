@@ -1,0 +1,26 @@
+{
+  "name": "django-container",
+  "version": "1.0.0",
+  "parentImage": "public.ecr.aws/amazonlinux/amazonlinux:2023",
+  "components": [
+    {
+      "componentArn": "arn:aws:imagebuilder:us-east-1:aws:component/install-python3.12/1.0.0"
+    },
+    {
+      "componentArn": "arn:aws:imagebuilder:us-east-1:aws:component/install-pip/1.0.0"
+    },
+    {
+      "componentArn": "arn:aws:imagebuilder:us-east-1:aws:component/run-django-setup/1.0.0"
+    }
+  ],
+  "targetRepository": {
+    "service": "ECR",
+    "repositoryName": "django-repo"
+  },
+  "workingDirectory": "/app",
+  "dockerfileTemplate": "Dockerfile",
+  "tags": {
+    "project": "django-app",
+    "environment": "production"
+  }
+}

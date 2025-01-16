@@ -7,15 +7,13 @@ from .models import Category, Product, ProductPhoto
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("name",)}
+    # prepopulated_fields = {"slug": ("name",)}
     list_display = [
         "id",
         "name",
+        "slug",
     ]
-    search_fields = [
-        "id",
-        "name",
-    ]
+    search_fields = ["id", "name", "slug"]
 
 
 class ProductPhotoInline(admin.TabularInline):

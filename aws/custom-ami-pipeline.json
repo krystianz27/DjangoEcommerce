@@ -1,0 +1,10 @@
+{
+  "name": "custom-ami-pipeline",
+  "description": "Pipeline to build custom AMI",
+  "imageRecipeArn": "arn:aws:imagebuilder:eu-central-1:533267011476:image-recipe/custom-ami-recipe/1.0.0",
+  "infrastructureConfigurationArn": "arn:aws:imagebuilder:eu-central-1:533267011476:infrastructure-configuration/custom-infra-config",
+  "schedule": {
+    "scheduleExpression": "rate(7 days)"
+  },
+  "status": "ENABLED"
+}

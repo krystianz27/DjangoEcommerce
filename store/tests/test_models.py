@@ -46,6 +46,6 @@ class ProductModelTest(TestCase):
             category=self.category,
             title="Mouse",
             price=29.99,
-            default_image="media/images/default.jpg",  # Poprawiono pole na default_image
+            default_image="media/images/default.jpg",
         )
         self.assertEqual(product_without_brand.brand, "unbranded")

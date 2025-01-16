@@ -1,0 +1,27 @@
+{
+  "name": "custom-ami-recipe",
+  "version": "1.0.0",
+  "parentImage": "arn:aws:imagebuilder:eu-central-1:aws:image/amazon-linux-2023-x86/2023.0.20230518",
+  "components": [
+    {
+      "componentArn": "arn:aws:imagebuilder:eu-central-1:aws:component/install-python3.12/1.0.0"
+    },
+    {
+      "componentArn": "arn:aws:imagebuilder:eu-central-1:533267011476:component/setup-django-nginx/1.0.0"
+    }
+  ],
+  "blockDeviceMappings": [
+    {
+      "deviceName": "/dev/xvda",
+      "ebs": {
+        "volumeSize": 30,
+        "deleteOnTermination": true,
+        "volumeType": "gp3"
+      }
+    }
+  ],
+  "tags": {
+    "project": "custom-ami",
+    "environment": "production"
+  }
+}

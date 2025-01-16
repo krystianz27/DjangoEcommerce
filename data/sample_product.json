@@ -1,0 +1,528 @@
+[
+  {
+    "category": 1,
+    "title": "Classic White T-Shirt",
+    "brand": "BasicWear",
+    "description": "A classic, comfortable white t-shirt that pairs perfectly with anything.",
+    "price": 19.99
+  },
+  {
+    "category": 1,
+    "title": "Graphic Print T-Shirt",
+    "brand": "ArtStyle",
+    "description": "Bold graphic prints make this t-shirt stand out from the crowd.",
+    "price": 25.99
+  },
+  {
+    "category": 1,
+    "title": "Striped Crew Neck T-Shirt",
+    "brand": "UrbanVibe",
+    "description": "A stylish striped design for a modern, casual look.",
+    "price": 21.99
+  },
+  {
+    "category": 1,
+    "title": "V-Neck Casual T-Shirt",
+    "brand": "ComfyFit",
+    "description": "A relaxed v-neck t-shirt for easy everyday wear.",
+    "price": 17.99
+  },
+  {
+    "category": 1,
+    "title": "Oversized T-Shirt",
+    "brand": "LooseFit",
+    "description": "Perfectly oversized for a laid-back, comfy style.",
+    "price": 22.99
+  },
+  {
+    "category": 1,
+    "title": "Cotton Black T-Shirt",
+    "brand": "CottonWear",
+    "description": "Made from premium cotton, this black t-shirt is a wardrobe essential.",
+    "price": 18.5
+  },
+  {
+    "category": 1,
+    "title": "Tie-Dye T-Shirt",
+    "brand": "VividColor",
+    "description": "Colorful and fun, this tie-dye t-shirt adds some vibrancy to your wardrobe.",
+    "price": 29.99
+  },
+  {
+    "category": 1,
+    "title": "Graphic Band T-Shirt",
+    "brand": "RockStyle",
+    "description": "Show your love for music with this iconic band logo t-shirt.",
+    "price": 23.5
+  },
+  {
+    "category": 1,
+    "title": "Pocket T-Shirt",
+    "brand": "SimpleWear",
+    "description": "A minimalist pocket t-shirt with a small touch of style.",
+    "price": 20.99
+  },
+  {
+    "category": 1,
+    "title": "Long Sleeve Casual T-Shirt",
+    "brand": "CozyWear",
+    "description": "For cooler days, this long sleeve t-shirt provides both warmth and comfort.",
+    "price": 24.5
+  },
+  {
+    "category": 1,
+    "title": "Sporty T-Shirt",
+    "brand": "ActiveWear",
+    "description": "A breathable and moisture-wicking t-shirt perfect for your workout.",
+    "price": 26.0
+  },
+  {
+    "category": 1,
+    "title": "Ringer T-Shirt",
+    "brand": "RetroStyle",
+    "description": "A vintage-inspired ringer t-shirt with contrasting trim for a retro look.",
+    "price": 22.5
+  },
+  {
+    "category": 1,
+    "title": "Premium Fit T-Shirt",
+    "brand": "EliteWear",
+    "description": "High-quality fabric and a tailored fit make this t-shirt the perfect choice for any occasion.",
+    "price": 35.99
+  },
+  {
+    "category": 1,
+    "title": "Vintage Wash T-Shirt",
+    "brand": "OldSchool",
+    "description": "A soft, vintage-style t-shirt with a worn-in look.",
+    "price": 27.0
+  },
+  {
+    "category": 1,
+    "title": "Minimalist T-Shirt",
+    "brand": "CleanStyle",
+    "description": "Simplicity is key with this ultra-minimalist design.",
+    "price": 19.0
+  },
+
+  {
+    "category": 2,
+    "title": "Slim Fit Jeans",
+    "brand": "Brand A",
+    "description": "Comfortable slim-fit jeans perfect for everyday wear.",
+    "price": 39.99
+  },
+  {
+    "category": 2,
+    "title": "Bootcut Jeans",
+    "brand": "Brand B",
+    "description": "Classic bootcut jeans with a slight flare at the leg opening.",
+    "price": 49.99
+  },
+  {
+    "category": 2,
+    "title": "High Waist Skinny Jeans",
+    "brand": "Brand C",
+    "description": "High waist skinny jeans designed to flatter and elongate your legs.",
+    "price": 44.99
+  },
+  {
+    "category": 2,
+    "title": "Straight Leg Jeans",
+    "brand": "Brand D",
+    "description": "Timeless straight-leg jeans offering comfort and versatility.",
+    "price": 42.99
+  },
+  {
+    "category": 2,
+    "title": "Distressed Denim Jeans",
+    "brand": "Brand E",
+    "description": "Trendy distressed jeans with a worn-in look.",
+    "price": 55.99
+  },
+  {
+    "category": 2,
+    "title": "Relaxed Fit Jeans",
+    "brand": "Brand F",
+    "description": "Casual relaxed fit jeans with a loose, comfortable feel.",
+    "price": 39.99
+  },
+  {
+    "category": 2,
+    "title": "Wide Leg Jeans",
+    "brand": "Brand G",
+    "description": "Chic wide-leg jeans offering a flowy and trendy silhouette.",
+    "price": 59.99
+  },
+  {
+    "category": 2,
+    "title": "Ripped Skinny Jeans",
+    "brand": "Brand H",
+    "description": "Stylish skinny jeans with ripped details for an edgy look.",
+    "price": 45.99
+  },
+  {
+    "category": 2,
+    "title": "Bootcut Denim Jeans",
+    "brand": "Brand I",
+    "description": "Classic denim jeans with a bootcut shape for a balanced fit.",
+    "price": 48.99
+  },
+  {
+    "category": 2,
+    "title": "Mom Jeans",
+    "brand": "Brand J",
+    "description": "Retro-inspired high-waisted mom jeans with a relaxed fit.",
+    "price": 43.99
+  },
+  {
+    "category": 2,
+    "title": "Jeggings",
+    "brand": "Brand K",
+    "description": "Stretchy and comfortable jeggings that look like jeans.",
+    "price": 29.99
+  },
+  {
+    "category": 2,
+    "title": "Tapered Jeans",
+    "brand": "Brand L",
+    "description": "Tapered jeans with a fitted ankle for a modern, sleek look.",
+    "price": 46.99
+  },
+  {
+    "category": 2,
+    "title": "Cropped Jeans",
+    "brand": "Brand M",
+    "description": "Fashionable cropped jeans perfect for the warmer months.",
+    "price": 41.99
+  },
+  {
+    "category": 2,
+    "title": "Dark Wash Jeans",
+    "brand": "Brand N",
+    "description": "Classic dark wash jeans that can be dressed up or down.",
+    "price": 49.99
+  },
+  {
+    "category": 2,
+    "title": "Light Wash Jeans",
+    "brand": "Brand O",
+    "description": "Casual light wash jeans for a laid-back, everyday look.",
+    "price": 44.99
+  },
+  {
+    "category": 3,
+    "title": "Leather Jacket",
+    "brand": "Brand A",
+    "description": "Classic leather jacket with a sleek, stylish design.",
+    "price": 129.99
+  },
+  {
+    "category": 3,
+    "title": "Denim Jacket",
+    "brand": "Brand B",
+    "description": "A timeless denim jacket for casual and chic looks.",
+    "price": 79.99
+  },
+  {
+    "category": 3,
+    "title": "Bomber Jacket",
+    "brand": "Brand C",
+    "description": "Classic bomber jacket with a comfortable fit and a modern look.",
+    "price": 99.99
+  },
+  {
+    "category": 3,
+    "title": "Trench Coat",
+    "brand": "Brand D",
+    "description": "Elegant trench coat perfect for chilly weather.",
+    "price": 119.99
+  },
+  {
+    "category": 3,
+    "title": "Puffer Jacket",
+    "brand": "Brand E",
+    "description": "Lightweight puffer jacket with excellent insulation for cold weather.",
+    "price": 89.99
+  },
+  {
+    "category": 3,
+    "title": "Hooded Jacket",
+    "brand": "Brand F",
+    "description": "Casual hooded jacket with zip closure and adjustable drawstrings.",
+    "price": 69.99
+  },
+  {
+    "category": 3,
+    "title": "Blazer Jacket",
+    "brand": "Brand G",
+    "description": "Sophisticated blazer jacket perfect for formal occasions.",
+    "price": 139.99
+  },
+  {
+    "category": 3,
+    "title": "Cropped Jacket",
+    "brand": "Brand H",
+    "description": "Trendy cropped jacket with a relaxed fit and modern style.",
+    "price": 74.99
+  },
+  {
+    "category": 3,
+    "title": "Varsity Jacket",
+    "brand": "Brand I",
+    "description": "Stylish varsity jacket with contrasting sleeves and a sporty look.",
+    "price": 89.99
+  },
+  {
+    "category": 3,
+    "title": "Peacoat",
+    "brand": "Brand J",
+    "description": "Classic double-breasted peacoat for a stylish and warm winter look.",
+    "price": 109.99
+  },
+  {
+    "category": 3,
+    "title": "Field Jacket",
+    "brand": "Brand K",
+    "description": "Military-inspired field jacket with functional pockets and rugged style.",
+    "price": 94.99
+  },
+  {
+    "category": 3,
+    "title": "Utility Jacket",
+    "brand": "Brand L",
+    "description": "Practical utility jacket with multiple pockets and a durable design.",
+    "price": 84.99
+  },
+  {
+    "category": 3,
+    "title": "Fleece Jacket",
+    "brand": "Brand M",
+    "description": "Soft fleece jacket that provides warmth and comfort during outdoor activities.",
+    "price": 59.99
+  },
+  {
+    "category": 3,
+    "title": "Rain Jacket",
+    "brand": "Brand N",
+    "description": "Water-resistant rain jacket with adjustable hood for wet weather.",
+    "price": 79.99
+  },
+  {
+    "category": 3,
+    "title": "Overcoat",
+    "brand": "Brand O",
+    "description": "Formal overcoat that adds sophistication to any outfit during colder months.",
+    "price": 149.99
+  },
+  {
+    "category": 4,
+    "title": "Leather Boots",
+    "brand": "UrbanStride",
+    "description": "Durable leather boots designed for both style and comfort in any weather.",
+    "price": 119.99
+  },
+  {
+    "category": 4,
+    "title": "Running Sneakers",
+    "brand": "SwiftRun",
+    "description": "High-performance running sneakers that provide excellent support and speed.",
+    "price": 89.99
+  },
+  {
+    "category": 4,
+    "title": "Casual Loafers",
+    "brand": "DayWalkers",
+    "description": "Classic loafers that are perfect for casual outings and all-day wear.",
+    "price": 59.99
+  },
+  {
+    "category": 4,
+    "title": "High-top Sneakers",
+    "brand": "Skyline Pulse",
+    "description": "Trendy high-top sneakers for urban explorers and street fashion enthusiasts.",
+    "price": 79.99
+  },
+  {
+    "category": 4,
+    "title": "Winter Boots",
+    "brand": "FrostGuard",
+    "description": "Insulated winter boots to keep your feet warm and dry even in the harshest conditions.",
+    "price": 129.99
+  },
+  {
+    "category": 4,
+    "title": "Platform Sneakers",
+    "brand": "SkyStep",
+    "description": "Stylish platform sneakers that elevate your look and add extra comfort.",
+    "price": 99.99
+  },
+  {
+    "category": 4,
+    "title": "Slip-on Sneakers",
+    "brand": "QuickStride",
+    "description": "Easy slip-on sneakers with a sleek design and superior comfort for daily wear.",
+    "price": 69.99
+  },
+  {
+    "category": 4,
+    "title": "Trail Running Shoes",
+    "brand": "PeakTrek",
+    "description": "Durable trail running shoes designed for off-road adventures and tough terrain.",
+    "price": 109.99
+  },
+  {
+    "category": 4,
+    "title": "Boat Shoes",
+    "brand": "OceanicStep",
+    "description": "Classic boat shoes ideal for nautical activities or summer adventures by the sea.",
+    "price": 89.99
+  },
+  {
+    "category": 4,
+    "title": "Chelsea Boots",
+    "brand": "LuxeStep",
+    "description": "Elegant Chelsea boots with a streamlined design, perfect for both formal and casual outfits.",
+    "price": 119.99
+  },
+  {
+    "category": 4,
+    "title": "Skate Shoes",
+    "brand": "BoardRush",
+    "description": "Sturdy skate shoes with excellent grip and durability for skateboarders.",
+    "price": 79.99
+  },
+  {
+    "category": 4,
+    "title": "Espadrilles",
+    "brand": "SunKissed",
+    "description": "Lightweight and breathable espadrilles perfect for summer outings and beach trips.",
+    "price": 49.99
+  },
+  {
+    "category": 4,
+    "title": "Combat Boots",
+    "brand": "IronSole",
+    "description": "Tough combat boots designed for rugged use and added protection in any environment.",
+    "price": 149.99
+  },
+  {
+    "category": 4,
+    "title": "Sneaker Boots",
+    "brand": "FusionStep",
+    "description": "Innovative sneaker boots combining the comfort of sneakers with the protection of boots.",
+    "price": 99.99
+  },
+  {
+    "category": 4,
+    "title": "Dress Shoes",
+    "brand": "PrestigeStep",
+    "description": "Classic dress shoes for formal occasions that add sophistication to your outfit.",
+    "price": 139.99
+  },
+  {
+    "category": 5,
+    "title": "Leather Wallet",
+    "brand": "GrittyCraft",
+    "description": "A sleek, handcrafted leather wallet with multiple compartments for your cards and cash.",
+    "price": 39.99
+  },
+  {
+    "category": 5,
+    "title": "Classic Sunglasses",
+    "brand": "SunBlaze",
+    "description": "Stylish round-frame sunglasses offering UV protection and timeless fashion.",
+    "price": 29.99
+  },
+  {
+    "category": 5,
+    "title": "Canvas Backpack",
+    "brand": "UrbanNomad",
+    "description": "Durable canvas backpack with adjustable straps and plenty of pockets for daily essentials.",
+    "price": 59.99
+  },
+  {
+    "category": 5,
+    "title": "Stainless Steel Watch",
+    "brand": "ChronoElite",
+    "description": "Elegant stainless steel watch with a minimalist design and precise timekeeping.",
+    "price": 99.99
+  },
+  {
+    "category": 5,
+    "title": "Leather Belt",
+    "brand": "CraftedTales",
+    "description": "Premium leather belt with a sturdy buckle, perfect for both casual and formal wear.",
+    "price": 49.99
+  },
+  {
+    "category": 5,
+    "title": "Eco-Friendly Tote Bag",
+    "brand": "GreenPath",
+    "description": "Sustainable, spacious tote bag made from organic cotton, perfect for shopping or beach days.",
+    "price": 19.99
+  },
+  {
+    "category": 5,
+    "title": "Wireless Earbuds",
+    "brand": "SoundSphere",
+    "description": "Compact wireless earbuds delivering crisp sound quality and noise isolation.",
+    "price": 79.99
+  },
+  {
+    "category": 5,
+    "title": "Cashmere Scarf",
+    "brand": "SoftAura",
+    "description": "Luxurious cashmere scarf designed to keep you warm and stylish during cold weather.",
+    "price": 129.99
+  },
+  {
+    "category": 5,
+    "title": "Leather Journal",
+    "brand": "InkMasters",
+    "description": "Handmade leather journal with thick pages, perfect for capturing your thoughts or sketches.",
+    "price": 44.99
+  },
+  {
+    "category": 5,
+    "title": "Travel Organizer",
+    "brand": "JetSetGo",
+    "description": "Compact and stylish travel organizer for keeping your toiletries and essentials neatly arranged.",
+    "price": 34.99
+  },
+  {
+    "category": 5,
+    "title": "Foldable Travel Pillow",
+    "brand": "ComfyJet",
+    "description": "Portable and ergonomic travel pillow that provides comfort and support on long journeys.",
+    "price": 24.99
+  },
+  {
+    "category": 5,
+    "title": "Aromatherapy Diffuser",
+    "brand": "ZenMist",
+    "description": "Ultrasonic essential oil diffuser with LED lighting, designed to create a relaxing atmosphere.",
+    "price": 59.99
+  },
+  {
+    "category": 5,
+    "title": "Smartphone Wallet Case",
+    "brand": "TechTote",
+    "description": "Sleek smartphone wallet case with slots for your cards, money, and a secure compartment for your phone.",
+    "price": 29.99
+  },
+  {
+    "category": 5,
+    "title": "Metallic Keychain",
+    "brand": "ShinyTrinkets",
+    "description": "Stylish metallic keychain designed for keeping your keys secure and adding a touch of elegance.",
+    "price": 14.99
+  },
+  {
+    "category": 5,
+    "title": "Fitness Tracker Band",
+    "brand": "ActivePulse",
+    "description": "Smart fitness tracker band to monitor your activity, heart rate, and sleep patterns.",
+    "price": 49.99
+  }
+]

@@ -4,7 +4,7 @@ from .models import Category, Product
 
 from django.shortcuts import get_object_or_404
 
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 
 # from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -83,7 +83,7 @@ def list_category(request, category_slug=None):
     elif sort_by == "name_desc":
         products = products.order_by("-title")
     else:
-        products = Product.objects.all().order_by("id")
+        products = products.order_by("id")
 
     # Pagination
     paginator = Paginator(products, 10)  # Show 10 products per page
@@ -113,6 +113,17 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+    def create(self, request, *args, **kwargs):
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
@@ -120,10 +131,15 @@ class ProductViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(
-            data=request.data, many=isinstance(request.data, list)
-        )
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=201, headers=headers)
+
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )

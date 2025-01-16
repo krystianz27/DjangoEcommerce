@@ -1,0 +1,17 @@
+venv
+**/.env
+**/.env.example
+./ecommerce/.env
+./ebextensions
+./elasticbeanstalk
+.pytest_cache
+.prettierignore
+db.sqlite
+requirements-dev.txt
+.README.md
+
+.docker-compose-copy.yml
+.docker-compose-local.yml
+.pytest_cache
+.ebextensions
+.elasticbeanstalk

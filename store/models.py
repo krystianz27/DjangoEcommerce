@@ -4,12 +4,11 @@ from django.utils.text import slugify
 
 from django.urls import reverse
 
-# Create your models here.
-
 
 class Category(models.Model):
     name = models.CharField(max_length=250, db_index=True)
-    slug = models.SlugField(max_length=250, unique=True)
+    # slug = models.SlugField(max_length=250, unique=True)
+    slug = AutoSlugField(populate_from="name", unique=True)  # type: ignore
 
     class Meta:
         verbose_name_plural = "categories"
@@ -29,7 +28,7 @@ class Product(models.Model):
     title = models.CharField(max_length=250)
     brand = models.CharField(max_length=250, default="unbranded")
     description = models.TextField(blank=True)
-    slug = AutoSlugField(populate_from="title", unique=True)
+    slug = AutoSlugField(populate_from="title", unique=True)  # type: ignore
     price = models.DecimalField(max_digits=6, decimal_places=2)
     default_image = models.ImageField(default="images/default.jpg", upload_to="images")
 

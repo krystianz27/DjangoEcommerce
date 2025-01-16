@@ -6,11 +6,11 @@ venv/
 .env
 
 # Elastic Beanstalk Files
-.elasticbeanstalk/*
+# .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-.ebignore
+# .ebignore
 
 
-.ebextensions/env.config
-.ebextensions/*
+aws/.ebextensions/env.config
+# .ebextensions/*
